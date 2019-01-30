@@ -14,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:text="Hola Don Pepito"
         android:gravity="end|center_vertical"
+        android:text=""
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.05"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="monospace"
         android:gravity="end|center_vertical"
-        android:text="1.012.213,99"
+        android:text=""
         android:textSize="36sp"
         android:textStyle="bold"
         android:typeface="normal"
@@ -59,7 +60,8 @@
         app:layout_constraintHeight_percent=".10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_mc"
-        app:layout_constraintWidth_percent=".25" />
+        app:layout_constraintWidth_percent=".25"
+        android:onClick="mPlusButton"/>
 
     <Button
         android:id="@+id/button_msub"
@@ -108,7 +110,8 @@
         app:layout_constraintHeight_percent=".10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_c"
-        app:layout_constraintWidth_percent=".25" />
+        app:layout_constraintWidth_percent=".25"
+        android:onClick="divButton"/>
 
     <Button
         android:id="@+id/button_mul"
@@ -120,7 +123,8 @@
         app:layout_constraintHeight_percent=".10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_div"
-        app:layout_constraintWidth_percent=".25" />
+        app:layout_constraintWidth_percent=".25"
+        android:onClick="mulButton"/>
 
     <Button
         android:id="@+id/button_del"
@@ -132,7 +136,8 @@
         app:layout_constraintHeight_percent=".10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_mul"
-        app:layout_constraintWidth_percent=".25" />
+        app:layout_constraintWidth_percent=".25"
+        android:onClick="delButton"/>
 
     <Button
         android:id="@+id/button_7"
@@ -145,7 +150,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_8"
@@ -158,7 +163,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_7"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_9"
@@ -171,7 +176,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_8"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_subs"
@@ -183,7 +188,8 @@
         app:layout_constraintHeight_percent=".10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_9"
-        app:layout_constraintWidth_percent=".25" />
+        app:layout_constraintWidth_percent=".25"
+        android:onClick="subButton"/>
 
     <Button
         android:id="@+id/button_4"
@@ -196,7 +202,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_5"
@@ -209,7 +215,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_4"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_6"
@@ -222,7 +228,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_5"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_plus"
@@ -235,7 +241,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_6"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="sumOperation"
+        android:onClick="sumButton"
         />
 
     <Button
@@ -249,7 +255,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_2"
@@ -262,7 +268,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_1"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_3"
@@ -275,7 +281,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_2"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_equal"
@@ -288,7 +294,8 @@
         app:layout_constraintHeight_percent=".20"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_decimal"
-        app:layout_constraintWidth_percent=".25" />
+        app:layout_constraintWidth_percent=".25"
+        android:onClick="calculateButton"/>
 
     <Button
         android:id="@+id/button_percent"
@@ -316,7 +323,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_percent"
         app:layout_constraintWidth_percent=".25"
-        android:onClick="addNumberToScreen"/>
+        android:onClick="addDigitToScreen"/>
 
     <Button
         android:id="@+id/button_decimal"
