@@ -73,7 +73,8 @@
         app:layout_constraintHeight_percent=".10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_mplus"
-        app:layout_constraintWidth_percent=".25" />
+        app:layout_constraintWidth_percent=".25"
+        android:onClick="mSubButton"/>
 
     <Button
         android:id="@+id/button_mr"
@@ -85,7 +86,8 @@
         app:layout_constraintHeight_percent=".10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_msub"
-        app:layout_constraintWidth_percent=".25" />
+        app:layout_constraintWidth_percent=".25"
+        android:onClick="mrButton"/>
 
     <Button
         android:id="@+id/button_c"

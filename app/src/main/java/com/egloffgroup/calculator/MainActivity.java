@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private double numberA;
     private double numberB;
     private double memory;
-    private int decimalPrecision;
+    //private int decimalPrecision;
 
     private final int NONE = 0;
     private final int ADD = 1;
@@ -65,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         operation = NONE;
         numberA = Double.NaN;
         numberB = Double.NaN;
-        memory = 0.0;
-        decimalPrecision = 0;
+        memory = Double.NaN;
+        //decimalPrecision = 0;
     }
 
     @Override
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         numberB = Double.NaN;
         numberInput = false;
         mainScreenTV.setTextSize(textSize);
-        decimalPrecision = 0;
+        //decimalPrecision = 0;
     }
 
     public void delButton(View v) {
@@ -124,10 +125,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mPlusButton(View v) {
-        memory = memory +
-                Double.valueOf(mainScreenTV.getText().
+        if (Double.isNaN(memory)) {
+            memory = 0.0;
+        }
+        memory += Double.valueOf(mainScreenTV.getText().
                         toString().replaceAll(hundredSymbol, ""));
-        Log.d("CALCULATOR","Memory: " + Double.toString(memory));
+        Log.d("CALCULATOR","m+ memory: " + memory);
+    }
+
+    public void mrButton (View v) {
+        BigDecimal bigDecimal = new BigDecimal(String.valueOf(memory));
+        int intValue = bigDecimal.intValue();
+        Log.d("CALCULATOR","Double Number: " + bigDecimal.toPlainString());
+        Log.d("CALCULATOR","Integer Part: " + intValue);
+        Log.d("CALCULATOR","Decimal Part: " + bigDecimal.subtract(
+                new BigDecimal(intValue)).toPlainString());
+        Log.d("CALCULATOR","SCALE: " + bigDecimal.scale());
+    }
+
+
+    public void mSubButton (View v) {
+        if (Double.isNaN(memory)) {
+            memory = Double.valueOf(mainScreenTV.getText().
+                    toString().replaceAll(hundredSymbol, ""));
+        } else {
+            memory -= Double.valueOf(mainScreenTV.getText().
+                            toString().replaceAll(hundredSymbol, ""));
+        }
     }
 
     public void sumButton(View v) {
@@ -255,9 +279,9 @@ public class MainActivity extends AppCompatActivity {
         if (number.isEmpty()) {
             number = "0.0";
         }
-        if (decimal) {
+        /*if (decimal) {
             decimalPrecision = getDecimalPrecision(number);
-        }
+        }*/
         numberA = Double.valueOf(number.replaceAll(hundredSymbol, ""));
         mainScreenTV.setText("");
         decimal = false;
@@ -265,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int getDecimalPrecision (String number) {
         String[] s = number.split("\\" + decimalSymbol);
-        Log.d("CALCULATOR", "SAVE NUMBER A decimals: " + decimalPrecision);
+        //Log.d("CALCULATOR", "SAVE NUMBER A decimals: " + decimalPrecision);
         return s[s.length - 1].length();
     }
 
@@ -297,6 +321,9 @@ public class MainActivity extends AppCompatActivity {
         switch (operation) {
             case ADD:
                 result = numberA + numberB;
+                Log.d("CALCULATOR","ADD : scale A: " + getPrecision(Double.toString(numberA)));
+                Log.d("CALCULATOR","ADD : scale B: " + getPrecision(numberB));
+                Log.d("CALCULATOR","ADD result: " + Double.toString(result));
                 break;
             case SUB:
                 result = numberA - numberB;
@@ -318,6 +345,24 @@ public class MainActivity extends AppCompatActivity {
             numberB = Double.NaN;
             operation = ERROR;
         } else {
+            //int decimalPrecision;
+            BigDecimal bd;
+
+            if (operation == DIV) {
+                bd = new BigDecimal(Double.toString(result)).
+                        setScale(13,BigDecimal.ROUND_DOWN);
+            } else {
+                bd = new BigDecimal(Double.toString(result)); //.setScale(13,BigDecimal.ROUND_DOWN);
+            }
+            Log.d("CALCULATOR","Double Number: " + bd.toPlainString());
+            Log.d("CALCULATOR","SCALE: " + bd.scale());
+            mainScreenTV.setText(bd.toPlainString());
+            numberInput = false;
+            numberA = result;
+
+            /*
+
+
             if (operation == DIV) {
                 patt = pattern + decimalSymbol + "#############";
             } else {
@@ -336,9 +381,19 @@ public class MainActivity extends AppCompatActivity {
             String resultStr = String.valueOf(formatter.format(result));
             mainScreenTV.setText(resultStr);
             numberInput = false;
-            numberA = result;
-            decimalPrecision = getDecimalPrecision(resultStr);
+            numberA = result; */
+            //decimalPrecision = getDecimalPrecision(resultStr);
         }
+    }
+
+    private int getPrecision (Double number) {
+        BigDecimal bd = new BigDecimal(number); //.setScale(13,BigDecimal.ROUND_DOWN);
+        return bd.scale();
+    }
+
+    private int getPrecision (String number) {
+        BigDecimal bd = new BigDecimal(number); //.setScale(13,BigDecimal.ROUND_DOWN);
+        return bd.scale();
     }
 
     private String getDecimalPattern (int precision) {
